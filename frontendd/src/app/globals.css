@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.wheel::after,
+.wheel::before {
+  position: absolute;
+  content: "";
+  background-image: url("/wheel.png");
+  background-size: cover;
+  width: 80px;
+  height: 100%;
+  right: 0px;
+}
+.wheel::before {
+  background-image: url("/wheel2.png");
+ top: 0;
+ width: 100px;
+ right: auto;
+  left: -50px;
+}
