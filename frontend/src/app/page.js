@@ -1,13 +1,19 @@
 "use client";
 
 import Click from "@/components/click";
-import SpinWheel from "@/components/wheel";
+
 import { useAuth } from "@/hooks/useAuth";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+
+import dynamic from "next/dynamic";
+
+const SpinWheel = dynamic(() => import("@/components/wheel"), {
+  ssr: false,
+});
 
 export default function Home() {
   const { user, signOut } = useAuth();
@@ -129,24 +135,28 @@ export default function Home() {
       <div className="flex justify-between items-center bg-[#04073B] text-white shadow rounded-lg mt-4 p-4">
         <div className="flex flex-col gap-1">
           <h2>{user ? "Total Balance" : "Login to check Balance"}</h2>
-        {user && <div className="flex gap-1 items-center">
-          <Image src="/coin.png" width={30} height={50} alt="coin" />
           {user && (
-            <span className={loading ? "text-sm" : "text-4xl"}>
-              {loading ? "Loading..." : coins}
-            </span>
+            <div className="flex gap-1 items-center">
+              <Image src="/coin.png" width={30} height={50} alt="coin" />
+              {user && (
+                <span className={loading ? "text-sm" : "text-4xl"}>
+                  {loading ? "Loading..." : coins}
+                </span>
+              )}
+            </div>
           )}
-        </div>}
         </div>
         <div className="flex gap-1 items-center">
-        {!user && <div className="flex gap-1 items-center">
-          <Image src="/coin.png" width={30} height={50} alt="coin" />
-          {user && (
-            <span className={loading ? "text-sm" : "text-4xl"}>
-              {loading ? "Loading..." : coins}
-            </span>
+          {!user && (
+            <div className="flex gap-1 items-center">
+              <Image src="/coin.png" width={30} height={50} alt="coin" />
+              {user && (
+                <span className={loading ? "text-sm" : "text-4xl"}>
+                  {loading ? "Loading..." : coins}
+                </span>
+              )}
+            </div>
           )}
-        </div>}
           {user && (
             <Click>
               <Link

@@ -10,7 +10,7 @@ import WithdrawModal from "@/components/modal";
 import { Input } from "antd";
 import axios from "axios";
 
-const page = () => {
+const Page = () => {
   const [coins, setCoins] = useState(null); // Initially set to null
   const [loading, setLoading] = useState(false); // Loading state
 
@@ -40,10 +40,6 @@ const page = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getCoins();
-  }, []);
 
   const error = () => {
     toast("Not Enough Coins", {
@@ -117,6 +113,9 @@ const page = () => {
     </Click>
   );
 
+  useEffect(() => {
+    getCoins();
+  }, []);
   return (
     <main className="max-w-[96%] px-4 mx-auto">
       <Link
@@ -226,4 +225,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

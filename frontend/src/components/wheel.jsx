@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { Wheel } from "react-custom-roulette";
 import Click from "./click";
@@ -162,7 +163,8 @@ export default function SpinWheel({ winValue, loggedIn }) {
               className={classNames(
                 "bg-[#040542] text-white shadow rounded-lg px-4 py-2",
                 {
-                  "cursor-not-allowed": mustSpin || isCooldown || spinsLeft === 0,
+                  "cursor-not-allowed":
+                    mustSpin || isCooldown || spinsLeft === 0,
                 }
               )}
               onClick={loggedIn ? handleSpinClick : error}
